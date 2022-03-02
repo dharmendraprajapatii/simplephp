@@ -29,7 +29,7 @@ Route::view('tools','admin.tools');
 Route::view('metrics','admin.metrics');
 Route::view('admin_setting','admin.admin_setting');
 Route::view('logout','admin.logout');
-Route::view('login','admin.login');
+Route::view('login','admin.index');
 Route::post('login',function(){
     return view('admin.login');
 });
