@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('admin.index    ');
 });
 Route::view('index','admin.index');
-Route::get('customer','FirebaseController@index');
+Route::get('customer','App\Http\Controllers\FirebaseController@index');
 Route::view('business','admin.business');
 Route::view('business_categories','admin.business_categories');
 Route::view('post_basic','admin.post_basic');
