@@ -9,7 +9,7 @@
     if (abc=="secret") {
      
     } else {
-       //window.location.href="login";
+       window.location.href="login";
     }
   </script>
   <!-- Google Font: Source Sans Pro -->
