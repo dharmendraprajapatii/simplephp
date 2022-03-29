@@ -12,7 +12,7 @@
                         <th style="border: 1px solid black">Location</th>
                         <th style="border: 1px solid black">Category</th>
                         <th style="border: 1px solid black">Normal Post</th>
-                        <th style="border: 1px solid black">Promoted Post</th>
+                        <th style="border: 1px solid black">Live Promoted Post</th>
                         <th style="border: 1px solid black"  class="text-right">Action</th>
                     </tr>
                 </thead>
@@ -30,15 +30,21 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-md-2"></div>
-                                        <div class="col-md-4" style="border: 1px solid black">
-                                             Image: <p class="viewPostimage mt-2"  >Null</p>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <table>
+                                                    <thead>
+                                                        <tr >
+                                                            <th style="border: 1px solid black">id</th>
+                                                            <th style="border: 1px solid black">Image</th>
+                                                            <th style="border: 1px solid black">Description</th>
+                                                            <th style="border: 1px solid black">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="allData"></tbody>
+                                                </table>
+                                            </div>
                                         </div>
-                                        <div class="col-md-4" style="border: 1px solid black">
-                                                Description: <p id="viewPostData" class="mt-2"  >Null</p>
-                                        </div>
-                                    </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -52,21 +58,26 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Normal Post</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Promoted Post</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                     <div class="row">
-                                        <div class="col-md-2"></div>
-                                        <div class="col-md-4" style="border: 1px solid black">
-                                             Image: <p class="viewPostimage1 mt-2"  >Null</p>
-                                        </div>
-                                        <div class="col-md-4" style="border: 1px solid black">
-                                                Description: <p class="dataPost mt-2">Null</p>
-                                        </div>
-                                    </div>
+                                            <div class="col-sm-12">
+                                                <table>
+                                                    <thead>
+                                                        <tr >
+                                                        <th style="border: 1px solid black">id</th>
+                                                            <th style="border: 1px solid black">Image</th>
+                                                            <th style="border: 1px solid black">Description</th>
+                                                            <th style="border: 1px solid black">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="allData1"></tbody>
+                                                </table>
+                                            </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

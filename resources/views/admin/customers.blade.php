@@ -10,7 +10,7 @@
                         <th scope="col" style="border: 1px solid black">Customers</th>
                         <th scope="col" style="border: 1px solid black"> Mobile number</th>
                         <th scope="col" style="border: 1px solid black">Location</th>
-                        <th scope="col" style="border: 1px solid black">Follows</th>
+                        <th scope="col" style="border: 1px solid black">Following</th>
                         <th scope="col" style="border: 1px solid black">Action</th>
                     </tr>
                 </thead>

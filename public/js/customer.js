@@ -41,25 +41,26 @@ $(document).ready(function(){
                  
           }  
           database.ref('Follow').on('value', function(snapshot){
-          
+            var counter = 0;
             var follwingData=snapshot.val(); 
             $.each(follwingData, function(index1, element){
               
-              if (index1 === index ) {
+              if (index1 == index ) {
                   var followData=element.following;
                   $.each(followData,function(index2,ele){
-                    if (ele) {
+                   
+               
                         counter++; 
-                       
+                       console.log(ele);
                         $(".followData-"+index).html(counter);
-                    }
+                  
                     
                     
                   }); 
                   
               }
             });  
-            // console.log(counter);
+            console.log(counter);
           });
         });
         

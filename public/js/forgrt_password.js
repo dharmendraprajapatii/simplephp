@@ -26,11 +26,12 @@ $(document).ready(function(){
        var email=document.getElementById('email').value;
         if (email == update.email) {
             firebase.database().ref('Admin/').update({ password: password });
-            console.log('data updated');
-            // window.location.href="customer";
+            
+            
         }else{
             alert('This email is a incarrect')
         }
+        
       });    
     });
       

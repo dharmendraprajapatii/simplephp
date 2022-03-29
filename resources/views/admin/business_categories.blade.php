@@ -8,7 +8,7 @@
                     <div class="col-md-3"></div>
                     <div class="col-md-6 form-group">
                         <select class="form-control" id="categoryData">
-                
+                   
                         </select>
                     </div>
                     <div class="col-md-12">
@@ -17,7 +17,8 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Business Name</th>
-                                    <th>Business Cateory</th>
+                                    <th>Business Category</th>
+                                    <th>Business Sub Cateory</th>
                                 </tr>
                             </thead>
                             <tbody id="allDataCategory"></tbody>
@@ -33,6 +34,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.7.1/firebase-app.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.7.1/firebase-auth.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.7.1/firebase-database.min.js"></script>
-<script src="js/business_category.js"></script>
+<script src="js/business_category.js?v=<?=time()?>"></script>
 
  

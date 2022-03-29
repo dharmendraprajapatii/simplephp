@@ -102,6 +102,7 @@
 
     
 // }
+var database;
 
 $(document).ready(function(){
     var firebaseConfig={
@@ -120,7 +121,7 @@ $(document).ready(function(){
     };
     firebase.initializeApp(firebaseConfig);
     
-    var database=firebase.database();
+     database=firebase.database();
     var userId=1;
     database.ref('Users').on('value', function(snapshot){
         var userData=snapshot.val();
@@ -132,7 +133,7 @@ $(document).ready(function(){
                     <td style="border: 1px solid black">'+value.business_name+'</td>\
                     <td style="border: 1px solid black" class="text-center followData-'+index+'">0</td>\
                     <td style="border: 1px solid black" class="des">\
-                    <button class="btn btn-info viewData btn-sm" data-id="'+index+'" data-name="'+value.name+'" data-toggle="modal" data-target="#exampleModal">view</button>\
+                    <button class="btn btn-info viewData btn-sm" onclick="initViewData($(this))" data-id="'+index+'" data-name="'+value.name+'" data-toggle="modal" data-target="#exampleModal">view</button>\
                     </td>\
                   </tr>\
                 ');
@@ -168,55 +169,58 @@ $(document).ready(function(){
         // 
     //      
     });  
-  database.ref('Users/').on('value',function(snapshot){
-      var viewData=snapshot.val();
-        $.each(viewData, function(index, value){
-            database.ref('AudienceSell').on('value', function(snapshot){
-                // var num=0;
-            var userData1=snapshot.val();
+// database.ref('Users/').on('value',function(snapshot){
+//       var viewData=snapshot.val();
+//         $.each(viewData, function(index, value){
+//             database.ref('AudienceSell').on('value', function(snapshot){
+//                 // var num=0;
+//             var userData1=snapshot.val();
+              
+//             $.each(userData1, function(index1, value1){
+//                  $('.viewData').click(function(){
+//                     var idData=$(this).attr('data-id');
             
-            $.each(userData1, function(index1, value1){
-                 $('.viewData').click(function(){
-                    var idData=$(this).attr('data-id');
-            
-                   if (idData == index && index ==value1.currentUserId && value.type == 1) {
+//                    if () {
                     
-                       $('#viewPostName').html(value1.stAudienceName);
-                        $('#viewPostData').html(value1.stLocationName);
-                        $('#viewPostRadious').html(value1.stRadius);
-                   }
-                }); 
+//                        $('#viewPostName').html(value1.stAudienceName);
+//                         $('#viewPostData').html(value1.stLocationName);
+//                         $('#viewPostRadious').html(value1.stRadius);
+//                    }
+//                 }); 
                
-            });
-            // console.log(value1);
-        }); 
+//             });
+//             // console.log(value1);
+//         }); 
 
-        });
+//         });
         
-    });
+//     });
     
-    // database.ref('Users/').on('value',function(snapshot){
-    //   var userData=snapshot.val();
-    //  $.each(userData, function(index, value){
-    //      var userValue=value.id;
-    //     database.ref('Posts').on('value',function(snapshot){
-    //         var postData=snapshot.val();
-    //         $.each(postData, function(index1, value1){
-    //             postValue=value1.publisher;
-    //             if (postValue === userValue) {
-    //                 $('.deleteData').click(function(){
-    //                     var idData=$(this).attr('data-id');
-    //                     if (postData == idData) {
-    //                         console.log('hii');
-                            
-    //                     }else{
-    //                         console.log('no data avlaible');
-    //                     }
-    //                   });  
-    //             }
-    //         })
-    //     })
-    //  })  
-    // });
       
 });
+
+function initViewData( node ) {
+
+  var idData=$(node).attr('Data-id');
+
+  database.ref('AudienceSell').on('value', function(snapshot){
+          var html=[];
+          var id=1;
+        var viewData=snapshot.val();
+          $.each(viewData, function(index, value){                               
+                  
+                 if (idData == value.currentUserId  ) {
+                     var href=value.imageUrl;
+                     html.push('<tr>\
+                     <td style="border: 1px solid black">'+id++ +'</td>\
+                     <td style="border: 1px solid black" id="Postimage">'+value.stAudienceName+'</td>\
+                      <td style="border: 1px solid black">'+value.stLocationName +'</td>\
+                      <td style="border: 1px solid black">'+value.stRadius +'</td>\
+                     </tr>');
+                 }
+                 $('#allData1').html(html);                              
+              
+
+          });
+      });
+}

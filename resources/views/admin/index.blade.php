@@ -49,7 +49,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <div class="card">
+          <!-- <div class="card">
             <div class="card-header border-transparent">
               <h3 class="card-title">City</h3>
               <div class="card-tools">
@@ -91,10 +91,10 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="card bg-light ">
             <div class="card-header border-transparent">
-              <h3 class="card-title">List</h3>
+              <h3 class="card-title">List of Businesses</h3>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                   <i class="fas fa-minus"></i>
@@ -111,9 +111,9 @@
                   <tr>
                     <th style="border: 1px solid black">ID</th>
                     <th style="border: 1px solid black">User Name</th>
-                    <th style="border: 1px solid black">List Of Categories</th>
-                    <th style="border: 1px solid black">List Of Sub-Categories</th>
-                    <th style="border: 1px solid black">List Of Business</th>
+                    <th style="border: 1px solid black">Categories</th>
+                    <th style="border: 1px solid black">Sub-Categories</th>
+                    <th style="border: 1px solid black">Business Name</th>
                   </tr>
                   </thead>
                   <tbody id="listData"></tbody>
@@ -121,7 +121,7 @@
               </div>
             </div>
           </div>
-          <div class="card bg-light ">
+          <!-- <div class="card bg-light ">
             <div class="card-header border-transparent">
               <h3 class="card-title">Promoted  Post ( <font class="text-success" id="promtedPost"></font> )</h3>
               <div class="card-tools">
@@ -144,13 +144,11 @@
                     <th style="border: 1px solid black">Promotions</th>
                   </tr>
                   </thead>
-                  <tbody id="postData">
-
-                  </tbody>
+                  <tbody id="postData"></tbody>
                 </table>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

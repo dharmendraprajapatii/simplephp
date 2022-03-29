@@ -57,6 +57,7 @@ $(document).ready(function(){
         // var selectedData = document.getElementById('first').value;
        html.push('<option id="first" value="Ahmedabad" selected>Ahmedabad</option>\
                     <option  value="Surat">Surat</option>\
+                    <option value="Bopal">Bopal</option>\
                     <option value="Vadodara">Vadodara</option>\
                     <option value="Rajkot">Rajkot</option>\
                     <option value="Bhavnagar">Bhavnagar</option>\
@@ -108,16 +109,15 @@ $(document).ready(function(){
                 });
     });
     $('#otherCity').ready(function(){
-        var num = 0; 
-        database.ref('Users').on('value', function (snapshot) {              
-            var userData3 = snapshot.val();
-            // var html = [];  
+        
+        database.ref('Users').on('value', function (snapshot) {       
+            var num = 0;        
+            var userData3 = snapshot.val(); 
             $.each(userData3, function (index3, value3) {
                         var selectData =document.getElementById('first').value;
-                        if (selectData === value3.address) {
-                            if (value3.address) {
+                        if (selectData === value3.addressName) {
+                            if (value3.addressName) {
                                 num++;
-                                // console.log(num);
                             }
                            
                         }  
@@ -127,29 +127,34 @@ $(document).ready(function(){
               
     });
     $('#otherCity').change(function(){
-        var counter = 0;
+        var counter = 0; 
         var selectedOption = jQuery(this);
-        database.ref('Users').on('value', function (snapshot) {            
+        database.ref('Users').on('value', function (snapshot) {  
+                     
             var userData3 = snapshot.val();
-            var html = []; 
+             
             $.each(userData3, function (index3, value3) {
-                if (value3.address) {
+                if (value3.addressName) {
                         var selectData = jQuery(selectedOption).val(); 
-                        if (selectData === value3.address) {
-                            counter++; 
+                        if (selectData == value3.addressName) {
+                           
+                            counter++;
+                            
 
                         }  
                 }
             });
+            console.log(counter);
+            $("#cityData").html(counter); 
         });
-        $("#cityData").html(counter);       
+              
     });
     var userId=1;
     database.ref('Users').on('value', function(snapshot){
         var userData=snapshot.val();
         var html=[];
         $.each(userData, function(index4, value4){
-            if (value4.business_field && value4.business_sub_category) {
+            if (value4.type == 1 ) {
                 html.push('<tr>\
                         <td style="border: 1px solid black">'+userId++ +'</td>\
                         <td style="border: 1px solid black">'+value4.name +'</td>\
@@ -168,61 +173,77 @@ $(document).ready(function(){
 
                    }, 1500);
     });  
-    database.ref('Posts').on('value', function(snapshot){
-        var count=0;
-        var userId=1;
-        var userData=snapshot.val();
-        var html=[];
-        html.push('<tr>\
-        <td style="border: 1px solid black" id="userIdData">'+userId++ +'</td>\
-        <td style="border: 1px solid black"  id="businessData"></td>\
-        <td style="border: 1px solid black" id="audenceData"></td>\
-        <td style="border: 1px solid black" id="coundData"></td>\
-        </tr>');
-        $.each(userData, function(index, value){
-            if (value.type == 1) {
-                count++;
-            }
-           
-            database.ref('Users').on('value', function(snapshot){
-             var userDatas=snapshot.val();
-             $.each(userDatas, function(index1, value1){
-                    if (value.type == 1 && value.publisher === index1) {
+    // database.ref('Posts').on('value', function(snapshot){
+    //     var count=0;
+    //     var userId=1;
+    //     var userData=snapshot.val();
+    //     var html=[];
+    //     html.push('<tr>\
+    //     <td style="border: 1px solid black" id="userIdData">'+userId++ +'</td>\
+    //     <td style="border: 1px solid black"  id="businessData"></td>\
+    //     <td style="border: 1px solid black" id="audenceData"></td>\
+    //     <td style="border: 1px solid black" id="coundData"></td>\
+    //     </tr>');
+    //     $.each(userData, function(index, value){
+    //         if (value.type == 1) {
+    //             count++;
+    //         }
+    //        database.ref('Users').on('value', function(snapshot){
+    //         var userDatas=snapshot.val();
+    //         $.each(userDatas, function(index1, value1){
+    //             database.ref('AudienceSell').on('value',function(snapshot){
+    //                 var targetData=snapshot.val();
+    //                 $.each(targetData, function(index2, value2){
+    //                    if (index1 == value2.currentUserId) {
+    //                     $('#postData').html(html);
+    //                      $('#audenceData').html(value2.stLocationName);
+    //                     $('#coundData').html(count);
+    //                      $('#businessData').html(value1.business_name);
+    //                    }
+    //                 });
+    //             });
+                
+    //         });
+    //        });
+    //         // database.ref('Users').on('value', function(snapshot){
+    //         //  var userDatas=snapshot.val();
+    //         //  $.each(userDatas, function(index1, value1){
+    //         //         if (value.type == 1 && value.publisher === index1) {
                        
-                    database.ref('AudienceSell').on('value',function(snapshot){
-                        var targetData=snapshot.val();
-                        $.each(targetData, function(index2, value2){
+    //         //         database.ref('AudienceSell').on('value',function(snapshot){
+    //         //             var targetData=snapshot.val();
+    //         //             $.each(targetData, function(index2, value2){
                           
-                                if (index1 == value2.currentUserId) {
+    //         //                     if (index1 == value2.currentUserId) {
                                     
 
-                                        $('#postData').html(html);
-                                        $('#audenceData').html(value2.stLocationName);
-                                        $('#coundData').html(count);
-                                        $('#businessData').html(value1.business_name);
-                                        // $('#table').DataTable();
+    //         //                             $('#postData').html(html);
+    //         //                             $('#audenceData').html(value2.stLocationName);
+    //         //                             $('#coundData').html(count);
+    //         //                             $('#businessData').html(value1.business_name);
+    //         //                             // $('#table').DataTable();
                                     
-                                }
-                        });
+    //         //                     }
+    //         //             });
                         
-                     });
+    //         //          });
                      
-                    }
-             });
+    //         //         }
+    //         //  });
                                        
              
-            });
+    //         // });
             
-        });
-           setTimeout(
-                function() 
-                {
-                    $('#table').DataTable();
+    //     });
+    //        setTimeout(
+    //             function() 
+    //             {
+    //                 $('#table').DataTable();
 
-                   }, 1500);
+    //                }, 1500);
         
-        $('#promtedPost').html(count);
+    //     $('#promtedPost').html(count);
         
         
-    });  
+    // });  
 });

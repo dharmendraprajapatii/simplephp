@@ -29,18 +29,22 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                    <div class="row">
-                                        {{-- <div class="col-md-1"></div> --}}
-                                        <div class="col-md-4" style="border: 1px solid black">
-                                             Audience Name: <p id="viewPostName" class="mt-2" >Null</p>
+                                        <div class="row">
+                                                <div class="col-sm-12">
+                                                    <table>
+                                                        <thead>
+                                                            <tr >
+                                                                <th style="border: 1px solid black">id</th>
+                                                                <th style="border: 1px solid black">Audience Name</th>
+                                                                <th style="border: 1px solid black">Location</th>
+                                                                <th style="border: 1px solid black">Radius</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="allData1"></tbody>
+                                                    </table>
+                                                </div>
+                                        
                                         </div>
-                                        <div class="col-md-4" style="border: 1px solid black">
-                                                Location: <p id="viewPostData"  class="mt-2">Null</p>
-                                        </div>
-                                         <div class="col-md-4" style="border: 1px solid black">
-                                                Radious: <p id="viewPostRadious"  class="mt-2">Null</p>
-                                        </div>
-                                    </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

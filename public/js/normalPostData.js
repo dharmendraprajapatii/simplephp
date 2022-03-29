@@ -1,4 +1,6 @@
 
+var database;
+
 $(document).ready(function(){
     var firebaseConfig={
     "api_key":"AIzaSyD3P4c2dNlJ3Un-xHejUUGoMTwb_qQ8jbw",
@@ -15,159 +17,182 @@ $(document).ready(function(){
     "databaseURL": "https://locsaleapplication-default-rtdb.firebaseio.com",
     };
     firebase.initializeApp(firebaseConfig);
-    var database=firebase.database();
+     database=firebase.database();
     var userId=1;
     database.ref('Users').on('value', function(snapshot){
         var userData=snapshot.val();
-        var num=0;
+        var counter=0;
         var html=[];
         $.each(userData, function(index, value){
-          if (value.type == 1 ) {
-           
-
-            // var userCount = initUserCount( database, value.id );
-                   
-            html.push('<tr>\
-            <td >'+userId++ +'</td>\
-            <td  class="businessData-'+value.id+'" name-id="'+index+'">'+value.business_name+'</td>\
-            <td  class="likeData-'+index+'" like-id="'+value.id+'">0</td>\
-            <td  class="commData-'+index+'" comm-id="'+value.id+'">0</td>\
-             <td >\
-            <button class="timeData btn btn-success btn-sm" time-id="'+index+'" data-toggle="modal" data-target="#exampleModal1">Date and Time</button>\
-            </td>\
-            <td >\
-            <button class="viewData btn btn-info btn-sm" view-id="'+index+'" data-toggle="modal" data-target="#exampleModal">View</button>\
-            </td>\
-            <td >\
-            <button class="deleteData btn btn-danger btn-sm" data-id="'+index+'">Delete</button>\
-            </td>\
-                 </tr>');
-                 $('#nPostData').html(html);
-              
-            
-          }   
+            if (value.type == 1 ) {
+                html.push('<tr>\
+                <td style="border: 1px solid black;" >'+userId++ +'</td>\
+                <td style="border: 1px solid black;" class="businessData-'+value.id+'" name-id="'+index+'">'+value.business_name+'</td>\
+                <td style="border: 1px solid black;">\
+                <button class="viewData btn btn-info btn-sm"  onclick="initViewData1($(this))"  view-id="'+index+'" data-toggle="modal" data-target=".bd-example-modal-lg">View</button>\
+                <button class="deleteData btn btn-danger btn-sm" data-id="'+index+'">Delete</button>\
+                </td>\
+                    </tr>');  
+            }   
           database.ref('Posts').on('value',function(snapshot){
             var counter=0;
             var userData=snapshot.val();
             $.each(userData,function(index1,value1){
                 
                 var currentUserId=value1.publisher;
-                if (currentUserId === index) {
+                if (index === value1.publisher && value1.type == 2) {
                     
-                   database.ref('Likes').on('value', function(snapshot){
-                       
-                       var like=snapshot.val();
-                       
-                       $.each(like,function(index2,value2){
-                           
-                           if (index2 === index1 && currentUserId === index && value2) {
-                               
-                                counter++;
-                                // console.log(counter);
-                                $('.likeData-'+index).html(counter);
-                           }
-                       });
-                       
-                   });
-                   database.ref('Comments').on('value', function(snapshot){
-                       
-                    var like=snapshot.val();
-                    
-                    $.each(like,function(index3,value3){
                         
-                        if (index3 === index1 && currentUserId === index && value3) {
-                            
-                             counter++;
-                             $('.commData-'+index).html(counter);
-                        }
-                    });
-                    
-                });
-                   setTimeout(
-                function() 
-                {
-                    $('#daTable').DataTable();
-
-                   }, 1500);
-                }
-                
-            });
-            
-        });
-                
-            
-        });
-        
-             
-    }); 
-    database.ref('Posts').on('value', function(snapshot){
-        var userData1=snapshot.val();
-        $.each(userData1, function(index1, value1){  
-            $('.timeData').click(function(){
-                var idData=$(this).attr('time-id');
-                if (idData == value1.publisher) {
-                    var d=new Date(value1.timestamp);
-                    $('#viewPostDate').html(d);
-                }
-              }); 
-        });
-        
-    });
-  
-
-
-    database.ref('Users/').on('value',function(snapshot){
-      var deleteData=snapshot.val();
-      $('.deleteData').click(function(){
-        var idData=$(this).attr('data-id');
-        if (confirm('Are you sure delete this item')) {
-            firebase.database().ref('Users/' +idData).remove();
-            
-            window.location.href="post_basic";
-        }
-      });  
-        
-    });
-    database.ref('Posts').on('value',function(snapshot){
-        var viewData=snapshot.val();
-          $.each(viewData, function(index, value){
-              $('.viewData').click(function(){
-                  var idData=$(this).attr('view-id');
                   
-                 if (idData == value.publisher) {
-                     var href=value.imageUrl;
-                  //    console.log(idData);
-                    $(".viewPostimage").html("<img width='100px' height='100px' src='"+href+"'>");
-                  //    $('#viewPostimage').html(value1.imageUrl);
-                      $('#viewPostData').html(value.description);
-                 }
-              });
+                        //  $('#audienceData').html(html);
+                         $('#nPostData').html(html);
+                   
+                   
+                   
+                  
+                   
+                  
+                   
+                }
+            });
              
-              // console.log(value1);
-      
-  
-          });
-          //  $('#example').DataTable();
-      });
+                
+            });    
+        });
+       setTimeout(function(){$('#daTable').DataTable(); }, 1500);   
+    }); 
 
-     
+  
+
+
+        database.ref('Users/').on('value',function(snapshot){
+            var deleteData=snapshot.val();
+            $.each(deleteData,function(index,value){
+                database.ref('Posts').on('value',function(snapshot){
+                    var data=snapshot.val();
+                    $.each(data,function(index1,value1){
+                        $('.deleteData').click(function(){
+                            var idData=$(this).attr('data-id'); 
+                            if ( index === idData && index === value1.publisher) {
+                                if (confirm('Are you sure delete this item')) {
+                                    firebase.database().ref('Users/' +idData).remove();
+                                    jQuery( this ).parent().parent().remove();
+                                    window.location.href="live_post";
+                                }
+                            }
+                        });
+                    });
+                });
+            });  
             
+        });
+    
+        // database.ref('Users').on('value',function(snapshot){
+        //     database.ref('Posts').on('value', function(snapshot){
+        //         var userData1=snapshot.val();
+        //         $.each(userData1, function(index1, value1){
+        //             $('.viewData').click(function(){
+        //                 var idData=$(this).attr('view-id');
+        //                 var d=new Date(value1.timestamp);
+        //                 if (idData === value1.publisher && value1.type == 0) {
+        //                         var href=value1.imageUrl;
+        //                         $(".viewPostimage").html("<img width='100px' height='100px' src='"+href+"'>");
+        //                         $('.viewPostData').html(value1.description);
+        //                         $('.dateData').html(d);
+        //                 }
+        //             });  
+        //         });
+        //     });
+        // });
    
 });
-// function initUserCount( database, rowUserId ) {
-   
-        
-//     // $('.likeData').each(function(){
-//     //     var texto = $(this).attr('like-id');
+function initViewData1( node ) {
 
-      
-// //   });
-//   $('.commData').each(function(){
-//     var text=$(this).attr('comm-id');
- 
-// });
+    var idData=$(node).attr('view-id');
+        database.ref('Posts').on('value',function(snapshot){
+            var counter=0;
+            var html=[];
+            var id=1;
+          var viewData=snapshot.val();
+            $.each(viewData, function(index, value){                               
+                var d=new Date(value.timestamp);
+                   if (idData ===  value.publisher && value.type == 2 ) {
+                       var href=value.imageUrl;
+                       html.push('<tr>\
+                       <td style="border: 1px solid black">'+id++ +'</td>\
+                       <td style="border: 1px solid black" id="Postimage"><img  class="mt-2 mb-2 ml-2 mr-2"  width="70px" height="70px" src="'+href+'"></td>\
+                        <td style="border: 1px solid black">'+value.description +'</td>\
+                        <td style="border: 1px solid black">'+d+'</td>\
+                        <td style="border: 1px solid black;" class="likeData-'+index+'" like-id="'+index+'">0</td>\
+                        <td style="border: 1px solid black;" class="commData-'+index+'" comm-id="'+index+'">0</td>\
+                        <td style="border: 1px solid black">\
+                            <button class="btn deletepost btn-danger btn-sm"  post-id="'+index+'" data-name="'+value.name+'">Delete</button>\
+                        </td>\
+                       </tr>');
+                       database.ref('Likes').on('value', function(snapshot){
+                        var count=0;
+                        var like=snapshot.val();
+                        
+                        $.each(like,function(index2,value2){
+                            
+                            if (index == index2 && value2) {
+                               
+                                $.each(value2,function(index3,value3){
+                                    count++;
+                                    // console.log(index3);
+                                    setTimeout(function(){
+                                        $('.likeData-'+index).html(count);
+                                     }, 1500);
+                                    
+                                });
+                                
+                                 // console.log(counter);
+                                
+                            }
+                        });
+                        // $('.likeData-'+index).html(counter);
+                        
+                    });
+                    database.ref('Comments').on('value', function(snapshot){
+                        var count=0;
+                        var like=snapshot.val();
+                        
+                        $.each(like,function(index2,value2){
+                            
+                            if (index == index2 && value2) {
+                               
+                                $.each(value2,function(index3,value3){
+                                    count++;
+                                    console.log(index3);
+                                    setTimeout(function(){
+                                        $('.commData-'+index).html(count);
+                                     }, 1500);
+                                    
+                                });
+                                
+                                
+                            }
+                        });
+                     
+                        
+                    });
+                   
+                   }
+                   $('#allData').html(html); 
+                  
+                   $('.deletepost').on('click', function(){
+                    var idData=$(this).attr('post-id');
+                    // console.log(idData);
+                    // var customerdata=value;
+                    if (confirm('Are you sure delete this item')) {
+                        firebase.database().ref('Posts/' +idData).remove();
+                        // window.location.href="business";
+                        // jQuery( this ).parent().parent().remove();
+                    }
+                });                             
+                
 
-   
-
-
-// }
+            });
+           
+        });
+}

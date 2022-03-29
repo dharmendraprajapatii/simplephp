@@ -11,18 +11,20 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Business Name</th>
-                                <th>Likes</th>
-                                <th>Comment</th>
-                                <th>Date/Time</th>
-                                <th colspan="2" class="text-center">Action</th>
+                                <!-- <th>Likes</th>
+                                <th>Comment</th> -->
+                                <!-- <th>Date/Time</th> -->
+                                <th col="2" >Action</th>
                             </tr>
                         </thead>
                         <tbody id="nPostData"></tbody>
                      
                     </table>
-                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
+                                 
+
+                                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">Normal Post</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -30,47 +32,31 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-md-2"></div>
-                                        <div class="col-md-4" style="border: 1px solid black">
-                                             Image: <p " class="viewPostimage mt-2" ></p>
+                                        <div class="row">
+                                        <div class="col-sm-12">
+                                                 <table>
+                                                        <thead>
+                                                            <tr >
+                                                                <th style="border: 1px solid black">id</th>
+                                                                <th style="border: 1px solid black">Image</th>
+                                                                <th style="border: 1px solid black">Description</th>
+                                                                <th style="border: 1px solid black">Date abd Time</th>
+                                                                <th style="border: 1px solid black">Likes</th>
+                                                                <th style="border: 1px solid black">Comments</th>
+                                                                <th style="border: 1px solid black">Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="allData"></tbody>
+                                                    </table>
+                                            </div>
                                         </div>
-                                        <div class="col-md-4" style="border: 1px solid black">
-                                                Description: <p   class="viewPostData mt-2">Null</p>
-                                        </div>
-                                    </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     </div>
-                                    </div>
                                 </div>
-                                </div>
-
-                                <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Date And Time</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                        <div class="row">
-                                           
-                                            <div class="col-md-12" style="border: 1px solid black">
-                                              <p id="viewPostDate" class="mt-2" >Null</p>
-                                            </div>
-                                        </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
-
+                            </div>
+                            </div>
 
                                    
 
